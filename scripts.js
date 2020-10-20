@@ -20,7 +20,7 @@ let pokemonRepository = ( function () {
     getAll: getAll
   }
 })()
-console.log(pokemonRepository.getAll());
+
 pokemonRepository.add({name:"Eve", height: 8, types: ["speed"]})
 // for (let i = 0; i < pokemonList.length; i++) {
   pokemonRepository.getAll().forEach(function(pokemon){
