@@ -8,40 +8,41 @@ let pokemonRepository = ( function () {
     { name: "charmander", types: ["fire"], height: "5" },
     { name: "caterpie", types: ["bug"], height: "7" },
   ];
-  // adding a for loop to all pokimons with a <div> created for a class in CSS for styling of the list made throuh the loop. Lastly using else if statements to provide heights for each pokemon.
+  // adding a for loop to all pokemons with a <div> created for a class in CSS for styling of the list made throuh the loop. Lastly using else if statements to provide heights for each pokemon.
   function add(pokemon){
     pokemonList.push(pokemon)
   }
   function getAll(){
     return pokemonList
   }
+  //Using DOM manipulation to customize Pokemon buttons and add event listener.
+  function addListItem(pokemon){
+    let pokemonList = document.querySelector(".pokemon-list");
+    let listpokemon = document.createElement("li");
+    let button = document. createElement("button");
+    button.innerText = pokemon.name;
+    button.classList.add("button-class");
+    listpokemon.appendChild(button);
+    pokemonList.appendChild(listpokemon);
+    button.addEventListener("click", function(event) {
+      showDetails(pokemon);
+  });
+}
+  function showDetails(pokemon){
+    console.log(pokemon);
+  }
+
   return{
     add: add,
-    getAll: getAll
+    getAll: getAll,
+    addListItem: addListItem
   }
+  
 })()
 
 pokemonRepository.add({name:"Eve", height: 8, types: ["speed"]})
-// for (let i = 0; i < pokemonList.length; i++) {
+// for (let i = 0; i < pokemonList.length; i++) {  
   pokemonRepository.getAll().forEach(function(pokemon){
-  let size;
-  if (pokemon.height <= 2) {
-    size = "small pokimone";
-  } else if (pokemon.height <= 5 && pokemon.height >= 3) {
-    size = "medium pokimone";
-  } else {
-    size = "large pokemon";
-  }
-  document.write(
-    '<div class = "box">' +
-      pokemon.name +
-      " (height: " +
-      pokemon.height +
-      "m)" +
-      size +
-      "<br>" +
-      pokemon.types +
-      "<br>" +
-      "</div>"
-  );
- } )
+    pokemonRepository.addListItem(pokemon);
+  
+ })
