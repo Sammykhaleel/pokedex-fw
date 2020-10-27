@@ -94,9 +94,26 @@ function hideModal(){
   let modalContainer = document.querySelector("#modal-container");
   modalContainer.classList.remove("is-visible");
 }
+window.addEventListener("keydown", (e) => {
+  let modalContainer = document.querySelector("#modal-container");
+  if (
+    e.key === "Escape" &&
+    modalContainer.classList.contains("is-visible")
+  ) {
+    hideModal();
+  }
+});
+//Modal hides if clicked outside of it
+modalContainer = document.querySelector("#modal-container");
+modalContainer.addEventListener("click", (e) => {
+  let target = e.target;
+  if (target === modalContainer) {
+    hideModal();
+  }
+});
   return{
     add: add,
-    getAll: getAll,
+    getAll: getAll, 
     addListItem: addListItem,
     loadList: loadList,
     loadDetails: loadDetails
