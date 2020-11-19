@@ -23,7 +23,11 @@ let pokemonRepository = (function () {
       image.attr("src", pokemon.imageUrl);
       let body = $('<div class="card-body" style="text-align: center;"></div>');
       let button = $(
-        '<button type="button" class="btn" style="background-color: #d88780; color: white" data-toggle="modal" data-target="#myModal">See profile</button>'
+        '<button type="button" class="btn" style="background-color: #d88780; color: white" data-toggle="modal" data-target="#myModal">' +
+          "See " +
+          pokemon.name +
+          " profile" +
+          "</button>"
       );
 
       //append
@@ -68,13 +72,13 @@ let pokemonRepository = (function () {
         pokemon.weight = details.weight;
         pokemon.height = details.height;
         pokemon.types = [];
-        details.types.forEach(function(itemType){
-          pokemon.types.push(itemType.type.name)
-        })
+        details.types.forEach(function (itemType) {
+          pokemon.types.push(itemType.type.name);
+        });
         pokemon.abilities = [];
-        details.abilities.forEach(function(itemAbility){
-          pokemon.abilities.push(itemAbility.ability.name)
-        })
+        details.abilities.forEach(function (itemAbility) {
+          pokemon.abilities.push(itemAbility.ability.name);
+        });
       })
       .catch(function (e) {
         console.error(e);
@@ -100,7 +104,9 @@ let pokemonRepository = (function () {
     //creating element for name in modal content
     let nameElement = $("<h1>" + item.name + "</h1>");
     // // creating img in modal content
-    let imageElementFront = $('<img class="modal-img mx-auto" style="width:50%">');
+    let imageElementFront = $(
+      '<img class="modal-img mx-auto" style="width:50%">'
+    );
     imageElementFront.attr("src", item.imageUrl);
     let imageElementBack = $('<img class="modal-img" style="width:50%">');
     imageElementBack.attr("src", item.imageUrlBack);
@@ -171,14 +177,14 @@ function search() {
   li = ul.querySelectorAll(".card");
   // console.log(li[0].querySelector(".card-body").querySelector(".card-title"));
   for (i = 0; i < li.length; i++) {
-  // a = li[i].getElementsByTagName("a")[0];
-  a = li[i].querySelector(".card-body").querySelector(".card-title");
-  console.log(a.innerText);
-  txtValue = a.textContent || a.innerText;
-  if (txtValue.toUpperCase().indexOf(filter) > -1) {
-  li[i].style.display = "";
-  } else {
-  li[i].style.display = "none";
+    // a = li[i].getElementsByTagName("a")[0];
+    a = li[i].querySelector(".card-body").querySelector(".card-title");
+    console.log(a.innerText);
+    txtValue = a.textContent || a.innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
   }
-  }
-  }
+}
